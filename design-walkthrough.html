@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Winter Arc Decisions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;500;600;700&display=swap">
+<style>
+/* Layout: a single reading column; decisions as records with a verdict rail, questions as a probe list. */
+:root {
+  --bg:        #F4F8FE;
+  --surface:   #FFFFFF;
+  --edge:      #D9E4F4;
+  --fg:        #0C1A2E;
+  --fg-muted:  #51688A;
+  --fg-faint:  #7D91AE;
+  --accent:    #2563D8;
+  --ember:     #A8501E;
+  --good:      #157A52;
+
+  --display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --body:    "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono:    "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:       #0B1420;
+    --surface:  #121E2E;
+    --edge:     #22344B;
+    --fg:       #E8F0FB;
+    --fg-muted: #9DB3CE;
+    --fg-faint: #6F86A3;
+    --accent:   #6FA0FF;
+    --ember:    #FF9A5E;
+    --good:     #4FD39A;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:       #0B1420;
+  --surface:  #121E2E;
+  --edge:     #22344B;
+  --fg:       #E8F0FB;
+  --fg-muted: #9DB3CE;
+  --fg-faint: #6F86A3;
+  --accent:   #6FA0FF;
+  --ember:    #FF9A5E;
+  --good:     #4FD39A;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-inline: 20px;
+  padding-block: 0;
+}
+.wrap { max-width: 760px; margin: 0 auto; }
+
+/* ---------- masthead ---------- */
+header.top { padding-block: 72px 44px; border-bottom: 1px solid var(--edge); }
+.eyebrow {
+  font-family: var(--mono); font-size: 11.5px; font-weight: 500;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--accent);
+  margin: 0 0 18px;
+}
+h1 {
+  font-family: var(--display); font-weight: 400;
+  font-size: clamp(42px, 8vw, 68px); line-height: 1.02;
+  letter-spacing: -.015em; margin: 0; text-wrap: balance;
+}
+.standfirst {
+  margin: 20px 0 0; font-size: 18px; line-height: 1.55;
+  color: var(--fg-muted); max-width: 60ch;
+}
+.meta {
+  margin-top: 26px; display: flex; flex-wrap: wrap; gap: 8px 22px;
+  font-family: var(--mono); font-size: 12px; color: var(--fg-faint);
+}
+.meta b { color: var(--fg-muted); font-weight: 500; }
+
+/* ---------- sections ---------- */
+section { padding-block: 48px; border-bottom: 1px solid var(--edge); }
+section:last-of-type { border-bottom: 0; }
+h2 {
+  font-family: var(--display); font-weight: 400;
+  font-size: clamp(27px, 4.4vw, 34px); line-height: 1.12;
+  letter-spacing: -.01em; margin: 0 0 8px; text-wrap: balance;
+}
+.section-note { margin: 0 0 30px; color: var(--fg-muted); max-width: 62ch; }
+h3 { font-size: 17.5px; font-weight: 600; line-height: 1.35; margin: 0; letter-spacing: -.005em; }
+p { margin: 0 0 14px; }
+p:last-child { margin-bottom: 0; }
+
+/* ---------- decision record ---------- */
+.rec {
+  background: var(--surface);
+  border: 1px solid var(--edge);
+  border-radius: 14px;
+  padding: 22px 24px;
+  margin-bottom: 16px;
+}
+.rec-head { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: baseline; margin-bottom: 12px; }
+.rec-head h3 { flex: 1 1 320px; min-width: 0; }
+.verdict {
+  font-family: var(--mono); font-size: 10.5px; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: 4px 9px; border-radius: 999px; white-space: nowrap;
+  border: 1px solid currentColor;
+}
+.v-kept     { color: var(--good); }
+.v-reversed { color: var(--ember); }
+.v-fixed    { color: var(--accent); }
+
+.rec dl { margin: 0; display: grid; grid-template-columns: 104px 1fr; gap: 10px 18px; }
+.rec dt {
+  font-family: var(--mono); font-size: 10.5px; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--fg-faint);
+  padding-top: 5px;
+}
+.rec dd { margin: 0; min-width: 0; }
+@media (max-width: 560px) {
+  .rec dl { grid-template-columns: 1fr; gap: 4px 0; }
+  .rec dt { padding-top: 12px; }
+  .rec dt:first-child { padding-top: 0; }
+}
+
+code {
+  font-family: var(--mono); font-size: .88em;
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  padding: 1px 5px; border-radius: 4px; word-break: break-word;
+}
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; font-weight: 600; color: var(--fg); }
+
+/* ---------- measurement table ---------- */
+.tablewrap { overflow-x: auto; margin: 0 0 16px; }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+th, td { text-align: left; padding: 9px 14px 9px 0; border-bottom: 1px solid var(--edge); vertical-align: top; }
+th {
+  font-family: var(--mono); font-size: 10.5px; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--fg-faint);
+}
+td.n { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* ---------- questions ---------- */
+.qgroup { margin-bottom: 34px; }
+.qgroup > h3 {
+  font-family: var(--mono); font-size: 11.5px; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--accent);
+  padding-bottom: 9px; border-bottom: 1px solid var(--edge); margin-bottom: 4px;
+}
+.q { padding: 16px 0; border-bottom: 1px solid var(--edge); }
+.q:last-child { border-bottom: 0; }
+.q > p:first-child { font-weight: 500; margin-bottom: 7px; }
+.listen {
+  font-size: 14px; color: var(--fg-muted); margin: 0;
+  padding-left: 14px; border-left: 2px solid var(--edge);
+}
+.listen b {
+  font-family: var(--mono); font-size: 10px; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--fg-faint);
+  display: block; margin-bottom: 3px;
+}
+
+footer { padding-block: 40px 80px; color: var(--fg-faint); font-size: 14px; }
+a { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <p class="eyebrow">iOS · SwiftUI · SwiftData</p>
+  <h1>Winter Arc: the decisions behind the build</h1>
+  <p class="standfirst">
+    A habit tracker for a 90-day, time-boxed challenge. One hard start, one hard end, a handful of
+    daily non-negotiables. This is a record of the engineering decisions, including the ones that
+    were wrong and had to be taken back out.
+  </p>
+  <div class="meta">
+    <span><b>Shipped</b> v1.0 29 Sep 2026 · v1.1 3 Oct 2026</span>
+    <span><b>Scope</b> 35 functional requirements, 10 non-functional</span>
+    <span><b>Dependencies</b> zero third-party</span>
+  </div>
+</header>
+
+<section>
+  <h2>Foundations</h2>
+  <p class="section-note">
+    Four decisions taken before implementation that shaped everything after them.
+  </p>
+
+  <article class="rec">
+    <div class="rec-head"><h3>Specifications are locked before code, and conventions are enforced as tests</h3><span class="verdict v-kept">Kept</span></div>
+    <dl>
+      <dt>Decision</dt>
+      <dd>Five spec documents define requirements, data model, screens and test cases. Every rule that could be silently violated later became a lint test that greps the source and fails the build: <code>CONV-01</code> (no wall-clock reads), <code>CONV-02</code> (no networking), <code>CONV-04</code> (inflection markup only in <code>Text</code> literals), <code>CONV-05</code> (motion only through the Reduce Motion helpers), <code>CONV-06</code> (no colour literals outside <code>Palette.swift</code>).</dd>
+      <dt>Why</dt>
+      <dd>A convention written in a document is advice. The same convention written as a failing test is a constraint. Three of these tests exist because the rule was broken first and the bug shipped.</dd>
+      <dt>Cost</dt>
+      <dd>Lint tests can pass vacuously. One of them did — see the measurement section.</dd>
+    </dl>
+  </article>
+
+  <article class="rec">
+    <div class="rec-head"><h3>Dates are calendar strings, never timestamps</h3><span class="verdict v-kept">Kept</span></div>
+    <dl>
+      <dt>Decision</dt>
+      <dd>A day is a <code>DateKey</code> — <code>yyyy-MM-dd</code> produced by an explicit Gregorian calendar with an injected time zone. Entries are keyed by that string. No <code>Date</code> is stored for a check-in.</dd>
+      <dt>Why</dt>
+      <dd>"Did I do this on Tuesday?" is a calendar question, not an instant-in-time question. Storing timestamps means DST transitions, travel across time zones and midnight boundaries each become a correctness bug. Storing the day as a string means they become nothing at all.</dd>
+      <dt>Cost</dt>
+      <dd>Date arithmetic has to go through a small typed layer instead of <code>Date</code>. Worth it: the test suite includes DST-forward, DST-back, time-zone travel and clock-rollback cases, and they pass by construction.</dd>
+    </dl>
+  </article>
+
+  <article class="rec">
+    <div class="rec-head"><h3>Day rollover is lazy, cursor-driven and idempotent</h3><span class="verdict v-kept">Kept</span></div>
+    <dl>
+      <dt>Decision</dt>
+      <dd>No background task. On launch and every foreground, a startup gate processes every date after <code>rolloverCursorDateKey</code> up to yesterday, marks missing entries missed, applies ruleset effects and advances the cursor. Running it twice on the same day is a no-op.</dd>
+      <dt>Why</dt>
+      <dd>Background execution on iOS is not guaranteed, so anything that depends on it is a class of bug you cannot reproduce. A cursor plus idempotency means the app is correct whether it was opened at midnight, after a week, or after ninety days.</dd>
+      <dt>Cost</dt>
+      <dd>The worst case — a 90-day catch-up across 7 habits, 630 inserts in one save — happens while the user waits. Measured at <span class="num">0.228 s</span> against a <span class="num">1 s</span> budget.</dd>
+    </dl>
+  </article>
+
+  <article class="rec">
+    <div class="rec-head"><h3>The widget reads a JSON snapshot, not the database</h3><span class="verdict v-kept">Kept</span></div>
+    <dl>
+      <dt>Decision</dt>
+      <dd>After every write the app serialises a small snapshot to <code>widget-snapshot.json</code> in the App Group container, written atomically. The widget extension opens that file and never touches SwiftData.</dd>
+      <dt>Why</dt>
+      <dd>Two processes sharing a store is a concurrency problem with no upside here — the widget shows a day index and a done count. A file read cannot corrupt anything, cannot block, and degrades to a defined empty state when missing or unreadable.</dd>
+      <dt>Cost</dt>
+      <dd>A second representation of the same data to keep in sync, and a schema version in the file so an unknown one renders the empty state rather than wrong numbers.</dd>
+    </dl>
+  </article>
+</section>
+
+<section>
+  <h2>Where the framework fought back</h2>
+  <p class="section-note">
+    Three cases where the obvious approach was wrong, and the fix was only discoverable by running it.
+  </p>
+
+  <article class="rec">
+    <div class="rec-head"><h3>SwiftData relationship mutations do not notify SwiftUI</h3><span class="verdict v-fixed">Worked around</span></div>
+    <dl>
+      <dt>Problem</dt>
+      <dd>Toggling a habit writes through a relationship. Views deriving state from those entries kept rendering stale data — the checkbox moved, the consistency score did not.</dd>
+      <dt>Fix</dt>
+      <dd>An observable <code>dataVersion</code> counter on the app environment, incremented after any write that can change arc state. Views that derive from entries read it to make the dependency explicit.</dd>
+      <dt>Judgement</dt>
+      <dd>This is a workaround, not a design, and it is commented as one. The alternative — restructuring the model so every derived view observes a value type — was a larger change than the bug justified.</dd>
+    </dl>
+  </article>
+
+  <article class="rec">
+    <div class="rec-head"><h3>A background set above <code>TabView</code> is painted over by it</h3><span class="verdict v-reversed">Reversed</span></div>
+    <dl>
+      <dt>Plan</dt>
+      <dd>The visual restyle specified one backdrop gradient drawn once by the root container, with every screen transparent over it.</dd>
+      <dt>What happened</dt>
+      <dd>Every screen went flat white. <code>TabView</code> and <code>NavigationStack</code> paint their own background over anything set above them; the gradient has to sit on the screen's own content, inside the stack.</dd>
+      <dt>Resolution</dt>
+      <dd>Reverted to one call per screen — fifteen sites. Sheets and full-screen covers are separate window layers and need their own regardless, so per-screen turns out to be the uniform rule rather than a special case. The spec now records the failed approach and why, so it is not re-attempted from the document.</dd>
+    </dl>
+  </article>
+
+  <article class="rec">
+    <div class="rec-head"><h3><code>List</code> rows keep the system background</h3><span class="verdict v-reversed">Reversed</span></div>
+    <dl>
+      <dt>Attempt</dt>
+      <dd>To carry the new card styling into Settings and the other list screens, rows were given <code>.listRowBackground</code> with the custom fill.</dd>
+      <dt>What happened</dt>
+      <dd>It flattened the inset-grouped geometry into full-bleed rows. The screen stopped looking native and gained nothing but a tint.</dd>
+      <dt>Resolution</dt>
+      <dd>Rows keep the system's own inset-grouped background; only <code>.scrollContentBackground(.hidden)</code> is applied so the gradient shows between sections. Losing the platform's row shape cost more than the visual consistency gained.</dd>
+    </dl>
+  </article>
+</section>
+
+<section>
+  <h2>A bug class that shipped three times</h2>
+  <p class="section-note">
+    The same mistake in three places, each found separately, before the cause was named and made impossible.
+  </p>
+
+  <article class="rec">
+    <div class="rec-head"><h3>Hardcoded light colours on tokens that invert</h3><span class="verdict v-fixed">Fixed</span></div>
+    <dl>
+      <dt>Instances</dt>
+      <dd>A button gradient built from sRGB literals, which silently discarded the accent's dark-mode and high-contrast variants. A white button label on an accent that inverts, measuring about <span class="num">2.6:1</span> in dark mode. A white checkmark on the done-state green, measuring <span class="num">1.88:1</span> in dark mode against a <span class="num">3:1</span> floor — this one shipped to the App Store and stayed there for five days.</dd>
+      <dt>Root cause</dt>
+      <dd>A literal cannot carry appearance variants. Every one of these looked correct in the appearance it was written in.</dd>
+      <dt>Fix</dt>
+      <dd>Colours resolve from the asset catalogue through a single <code>Palette.swift</code>. Foreground colours that sit on an inverting fill use <code>systemBackground</code>, which inverts with it — the checkmark went from <span class="num">1.88:1</span> to <span class="num">11.19:1</span> in dark, <span class="num">5.34:1</span> in light. <code>CONV-06</code> now fails the build on a colour literal anywhere else, and two regression tests pin the old broken values below their thresholds so they cannot return quietly.</dd>
+    </dl>
+  </article>
+
+  <article class="rec">
+    <div class="rec-head"><h3>Contrast is measured at runtime, not asserted from the design</h3><span class="verdict v-kept">Kept</span></div>
+    <dl>
+      <dt>Decision</dt>
+      <dd>Contrast tests resolve the real asset-catalogue colours under each appearance and contrast setting and compute WCAG ratios, rather than checking values copied from a design file.</dd>
+      <dt>Why it mattered</dt>
+      <dd>The spec's own colour table had drifted: four values had been darkened in the catalogue during an accessibility pass and never written back. A test comparing against the document would have passed while the app was different.</dd>
+      <dt>What it caught</dt>
+      <dd>A streak colour taken from the mockup measured <span class="num">3.85:1</span> on its surface — below AA for text. Darkened to <span class="num">5.11:1</span> before it shipped. It also disproved a claim in the spec that a system label "passes by construction": it measures <span class="num">3.44:1</span> on pure white and never passed.</dd>
+    </dl>
+  </article>
+</section>
+
+<section>
+  <h2>Measurement</h2>
+  <p class="section-note">
+    Three cases where the instrument was wrong, and one where the result was green for the wrong reason.
+  </p>
+
+  <article class="rec">
+    <div class="rec-head"><h3>A green test suite that ran nothing</h3><span class="verdict v-fixed">Caught</span></div>
+    <dl>
+      <dt>Problem</dt>
+      <dd>A new lint test passed. Checking whether it would actually fail — by planting a violation — it still passed. On a clean build, it still passed.</dd>
+      <dt>Cause</dt>
+      <dd><code>xcodebuild -only-testing</code> with a name that matches nothing runs zero tests and prints <code>** TEST SUCCEEDED **</code>. The filter named a suite that did not exist.</dd>
+      <dt>Practice since</dt>
+      <dd>Every lint test in this project is verified by planting a violation and watching it fail. A filtered green run proves nothing until the filter is known to resolve.</dd>
+    </dl>
+  </article>
+
+  <article class="rec">
+    <div class="rec-head"><h3>The launch-time instrument was measuring itself</h3><span class="verdict v-reversed">Replaced</span></div>
+    <dl>
+      <dt>Problem</dt>
+      <dd><code>XCTApplicationLaunchMetric</code> reported about <span class="num">1.3 s</span> against a <span class="num">1 s</span> budget. A Release build came back slower and noisier, which is the opposite of what a real regression does.</dd>
+      <dt>Fix</dt>
+      <dd>The app measures itself: from the kernel's process start time — so dyld and pre-main work are included — to the first interactive frame, printed to the console in DEBUG. Median across cold launches: <span class="num">0.374 s</span>.</dd>
+    </dl>
+  </article>
+
+  <article class="rec">
+    <div class="rec-head"><h3>What the performance suite does not cover</h3><span class="verdict v-kept">Stated</span></div>
+    <dl>
+      <dt>Position</dt>
+      <dd>The three performance tests are data-layer measurements. They were re-run after the visual restyle and were unchanged — but a gradient was never going to affect how fast 630 rows insert.</dd>
+      <dt>Why it is written down</dt>
+      <dd>The restyle's real risk is a translucent fill and a shadow on every card down a long scrolling list, and nothing in the suite exercises rendering. Three green tests would otherwise read as coverage. The spec states the gap explicitly rather than letting the suite imply it.</dd>
+    </dl>
+  </article>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Measurement</th><th>Budget</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td>Worst-case rollover, 630 habit-days in one save</td><td class="n">&lt; 1 s</td><td class="n">0.228 s</td></tr>
+        <tr><td>All metrics over a 180-day, 7-habit arc</td><td class="n">&lt; 100 ms</td><td class="n">0.005 s</td></tr>
+        <tr><td>Startup gate: store open plus first rollover</td><td class="n">&lt; 300 ms</td><td class="n">0.007 s</td></tr>
+        <tr><td>Cold launch to interactive, median</td><td class="n">&lt; 1 s</td><td class="n">0.417 s</td></tr>
+        <tr><td>Accessibility audit findings</td><td class="n">—</td><td class="n">67 → 53</td></tr>
+        <tr><td>Dynamic Type audit at AX5, eight screens</td><td class="n">0 findings</td><td class="n">clean</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>Letting evidence overrule the plan</h2>
+  <p class="section-note">
+    The first week of production data changed what the next release is.
+  </p>
+
+  <article class="rec">
+    <div class="rec-head"><h3>A first-run problem wearing the costume of a product problem</h3><span class="verdict v-fixed">Rescoped</span></div>
+    <dl>
+      <dt>Signal</dt>
+      <dd>About <span class="num">27%</span> of installs deleted the app within a week. Day-1 retention around <span class="num">7%</span> against roughly <span class="num">25%</span> typical for iOS. But the users who stayed opened it about <span class="num">3.5</span> times a day.</dd>
+      <dt>Reading</dt>
+      <dd>A product failing its users does not produce survivors that engaged. People were not bouncing off the daily loop — most never reached it. Between download and loop sat seven setup screens, and the daily reminder defaulted off, so anyone who abandoned setup also left with nothing to bring them back.</dd>
+      <dt>Consequence</dt>
+      <dd>The next milestone had been a visual refresh of the welcome screen. It was rescoped behind a one-tap quick start and a reminder that defaults on. Four onboarding designs had already been drawn; none of them shortened the flow, so none of them addressed what the numbers showed.</dd>
+    </dl>
+  </article>
+
+  <article class="rec">
+    <div class="rec-head"><h3>Three changes in forty-eight hours, none attributable</h3><span class="verdict v-reversed">Mistake</span></div>
+    <dl>
+      <dt>What happened</dt>
+      <dd>A new version, a category change and a keyword rewrite all shipped inside two days. Conversion fell from about <span class="num">30%</span> to <span class="num">10.9%</span> across the same window.</dd>
+      <dt>Why it is recoverable here</dt>
+      <dd>The decline began before the new version went live, which rules the screenshots out. That was luck, not method — had the timing been slightly different, the data could not have answered the question it was collected for.</dd>
+      <dt>Rule since</dt>
+      <dd>One change, one week, then the next.</dd>
+    </dl>
+  </article>
+</section>
+
+<section>
+  <h2>Interview questions</h2>
+  <p class="section-note">
+    Questions this project supports, with what a strong answer contains. They work from either side of
+    the table: preparation if you are presenting the work, probes if you are assessing someone on it.
+  </p>
+
+  <div class="qgroup">
+    <h3>Modelling and correctness</h3>
+    <div class="q">
+      <p>Why store a check-in against a date string rather than a <code>Date</code>?</p>
+      <p class="listen"><b>Listen for</b> the distinction between an instant and a calendar day; DST, time-zone travel and midnight as the failure modes; and the recognition that this converts a family of runtime bugs into a representation choice.</p>
+    </div>
+    <div class="q">
+      <p>A user opens the app for the first time in three weeks. Walk me through what happens before the first frame.</p>
+      <p class="listen"><b>Listen for</b> the startup gate, a cursor advancing one day at a time, idempotency, ruleset effects applied per day rather than in aggregate, and an answer to how long it takes with a number attached.</p>
+    </div>
+    <div class="q">
+      <p>Grace Days gives a user N forgiven misses. The user edits a past day and that frees one up. What should happen?</p>
+      <p class="listen"><b>Listen for</b> recognition that failure is a state machine, not a flag: a refund can un-fail an arc only while the failure is unresolved; once the user has chosen to keep going or restart, the status stands. Watch for someone who treats it as a simple comparison.</p>
+    </div>
+    <div class="q">
+      <p>Why does the widget read a JSON file instead of the shared database?</p>
+      <p class="listen"><b>Listen for</b> two processes against one store as the risk being avoided, the widget's needs being trivial, and a defined behaviour when the file is missing, unreadable or an unknown schema version.</p>
+    </div>
+  </div>
+
+  <div class="qgroup">
+    <h3>Framework behaviour</h3>
+    <div class="q">
+      <p>You toggle a value through a SwiftData relationship and the view does not update. What is happening and what do you do?</p>
+      <p class="listen"><b>Listen for</b> relationship mutations not reliably publishing; an explicit observable version counter as a pragmatic fix; and — most of all — whether they call it a workaround rather than presenting it as architecture.</p>
+    </div>
+    <div class="q">
+      <p>You want one background gradient behind every screen of a tabbed SwiftUI app. Where does it go?</p>
+      <p class="listen"><b>Listen for</b> the instinct to put it at the root, then the knowledge that <code>TabView</code> and <code>NavigationStack</code> paint over it, and that sheets and covers are separate window layers needing their own regardless. A candidate who has only read about this will answer "the root" with confidence.</p>
+    </div>
+    <div class="q">
+      <p>How would you make an app honour Reduce Motion everywhere, and keep it honouring it a year from now?</p>
+      <p class="listen"><b>Listen for</b> a single seam all motion routes through, a test seam so the setting can be forced in tests, and a lint test banning raw animation elsewhere. The second half of the question is the real one: a policy nothing enforces decays.</p>
+    </div>
+  </div>
+
+  <div class="qgroup">
+    <h3>Accessibility and colour</h3>
+    <div class="q">
+      <p>A checkmark is white on a green circle and passes review. What would make you check it anyway?</p>
+      <p class="listen"><b>Listen for</b> the question "does the green change between appearances?" If the fill comes from an asset catalogue it inverts and the literal does not follow. Bonus: the fix is a colour that inverts with it, not a second hardcoded value.</p>
+    </div>
+    <div class="q">
+      <p>How do you test contrast so the test stays true as the design changes?</p>
+      <p class="listen"><b>Listen for</b> resolving the real catalogue colours at runtime under each appearance and contrast setting, rather than asserting values copied from a design file. Strong answers mention the drift case: the document and the assets disagreeing, with the test following the document.</p>
+    </div>
+    <div class="q">
+      <p>Under Increase Contrast you need a card's border to become more visible. The border is white at 95% on a white card. What do you change?</p>
+      <p class="listen"><b>Listen for</b> noticing that raising opacity does nothing — white on white is invisible at any alpha — so the hue has to flip to a dark line. This is the question that separates people who reason about rendered output from people who adjust numbers.</p>
+    </div>
+    <div class="q">
+      <p>Your accessibility audit reports 42 contrast failures after a redesign, up from 4. Do you ship?</p>
+      <p class="listen"><b>Listen for</b> measuring before reacting. Here the failures were system label colours that fail on any light background — 3.44:1 on pure white, before the redesign existed. A candidate who proposes a fix before establishing the baseline has told you something.</p>
+    </div>
+  </div>
+
+  <div class="qgroup">
+    <h3>Testing and tooling</h3>
+    <div class="q">
+      <p>Your new test passes. How do you know it is testing anything?</p>
+      <p class="listen"><b>Listen for</b> deliberately breaking the thing and watching the test fail. Ideally a story about a green run that was green because the filter matched no tests, or a fixture that made the assertion vacuous.</p>
+    </div>
+    <div class="q">
+      <p>A performance instrument reports you are over budget, but a Release build measures slower than Debug. What do you conclude?</p>
+      <p class="listen"><b>Listen for</b> suspicion of the instrument rather than the code, and a plan to measure independently — here, from kernel process start to first interactive frame, inside the app.</p>
+    </div>
+    <div class="q">
+      <p>Which conventions in a codebase deserve to be tests rather than documentation?</p>
+      <p class="listen"><b>Listen for</b> the ones that fail silently and are invisible in review: wall-clock reads, networking in an offline app, colour literals, raw animation calls. Each of those shipped a bug here before it became a test.</p>
+    </div>
+  </div>
+
+  <div class="qgroup">
+    <h3>Product judgement</h3>
+    <div class="q">
+      <p>Retention is 7% at day one, but the users who stay open the app three times a day. What do you do?</p>
+      <p class="listen"><b>Listen for</b> separating "the product fails people" from "people never reach the product". The engagement figure rules out the first. Then: what sits between install and first value, and what brings someone back tomorrow.</p>
+    </div>
+    <div class="q">
+      <p>You shipped a redesign, changed category and rewrote keywords in the same week. Conversion halved. What caused it?</p>
+      <p class="listen"><b>Listen for</b> "I cannot tell", said plainly, followed by what would have made it answerable. Any confident single-cause answer is the wrong one.</p>
+    </div>
+    <div class="q">
+      <p>Sharing progress to social media is listed as a non-goal. A user asks for it. How do you decide?</p>
+      <p class="listen"><b>Listen for</b> separating the mechanism from the category: feeds, friends and leaderboards need accounts, a backend and moderation; rendering an image to the system share sheet needs none of those and does not break an offline guarantee. Also listen for the behavioural risk — an audience changes what people optimise for.</p>
+    </div>
+    <div class="q">
+      <p>You built a decorative element, it matches the approved design, and on device it looks wrong. What now?</p>
+      <p class="listen"><b>Listen for</b> willingness to remove their own work, and to restore the rule it had required an exception to. A note recording that it was tried and why it went is the difference between a decision and an accident.</p>
+    </div>
+  </div>
+
+  <div class="qgroup">
+    <h3>Scope and constraint</h3>
+    <div class="q">
+      <p>This app has no accounts, no sync, no analytics SDK and no third-party dependencies. Defend that.</p>
+      <p class="listen"><b>Listen for</b> the product argument rather than a purity one: it finishes, there is nothing to scroll, nothing leaves the device — and that each of those is a claim made in the App Store listing, backed by a test that fails on networking symbols.</p>
+    </div>
+    <div class="q">
+      <p>Adding one animation library would cost about 2 MB. What else does it cost?</p>
+      <p class="listen"><b>Listen for</b> the second-order costs: a privacy manifest to re-verify, a review-notes claim about zero dependencies that becomes false, and a motion policy that the library does not know about. The binary size is the least interesting part.</p>
+    </div>
+    <div class="q">
+      <p>The arc runs October to December. Someone downloads it on 2 January. What is their experience?</p>
+      <p class="listen"><b>Listen for</b> spotting that the product works fine — arbitrary dates are supported — while the positioning speaks entirely to people who started in October. A seasonal product has an off-season, and it is a copy problem before it is a code problem.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>
+    Winter Arc is a solo iOS project: SwiftUI, SwiftData and WidgetKit, Swift 6 strict concurrency,
+    no third-party dependencies and no networking code. Figures in this document are measured values
+    from the test suite and App Store Connect, not estimates.
+  </p>
+</footer>
+
+</div>
+</body>
+</html>
