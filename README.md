@@ -1,6 +1,9 @@
 # Winter Arc Specs
 
-This reporsitory contains the specs, design decision walkthrough and videos for the app and not the code.Winter arc app is an offline-first iOS habit tracker built for one specific thing: running a **Winter Arc** — a
+This reporsitory contains the specs, design decision walkthrough and videos for the app and not the code.
+
+
+Winter arc app is an offline-first iOS habit tracker built for one specific thing: running a **Winter Arc** — a
 time-boxed stretch (classically Oct 1 – Dec 31) of daily non-negotiables, grouped into pillars,
 with a hard start, a hard end and a countdown.
 
