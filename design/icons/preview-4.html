@@ -1,0 +1,73 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Winter Arc — icon options</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#e9e9ee;font-family:-apple-system,"SF Pro Text",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;color:#1c1c1e}
+.stage{display:flex;gap:36px;padding:40px;width:max-content}
+.opt{display:flex;flex-direction:column;gap:14px;width:420px}
+.opt h2{font-size:22px;font-weight:700}
+.opt p{font-size:13.5px;color:#6e6e73;line-height:1.45}
+.big{width:420px;height:420px;border-radius:94px;overflow:hidden;background:#000}
+.big img{width:100%;height:100%;display:block}
+.row{display:flex;gap:12px}
+.wall{flex:1;border-radius:18px;padding:14px 10px 10px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.wall.light{background:linear-gradient(160deg,#dfe7f5,#f6f2ea)}
+.wall.dark{background:linear-gradient(160deg,#101828,#1e2a44)}
+.wall .lbl{font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#8e8e93}
+.ic{border-radius:22.4%;overflow:hidden;background:#000}
+.ic img{width:100%;height:100%;display:block}
+.ic.s60{width:60px;height:60px;border-radius:13.4px}
+.ic.s29{width:29px;height:29px;border-radius:6.5px}
+.ic.s120{width:120px;height:120px;border-radius:27px}
+.name{font-size:10px;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+.wall.light .name{color:#1c1c1e;text-shadow:none}
+.variants{display:flex;gap:10px;align-items:flex-end}
+.variants div{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10px;color:#6e6e73;font-weight:600}
+.tint{filter:grayscale(1) brightness(1.15)}
+.tinted{background:#1c1c1e}
+</style></head><body><div class="stage">
+<div class="opt">
+  <h2>Original (flat raster)</h2>
+  <div class="big"><img src="locked-flame.png"></div>
+  <div class="row">
+    <div class="wall light"><span class="lbl">Home · light</span><div class="ic s60"><img src="locked-flame.png"></div><span class="name">Winter Arc</span></div>
+    <div class="wall dark"><span class="lbl">Home · dark</span><div class="ic s60"><img src="locked-flame.png"></div><span class="name">Winter Arc</span></div>
+  </div>
+  <div class="variants">
+    <div><div class="ic s120"><img src="locked-flame.png"></div>default</div>
+    <div><div class="ic s120 tinted"><img class="tint" src="locked-flame.png" style="opacity:.9"></div>tinted</div>
+    <div><div class="ic s60"><img src="locked-flame.png"></div>60 pt</div>
+    <div><div class="ic s29"><img src="locked-flame.png"></div>29 pt</div>
+  </div>
+  <p>Single JPEG layer. Glow halo, bevelled star, near-black background. Star and ring merge at 29 pt.</p>
+</div>
+<div class="opt">
+  <h2>Rebuilt · layered</h2>
+  <div class="big"><img src="icon-g-locked-flame.svg"></div>
+  <div class="row">
+    <div class="wall light"><span class="lbl">Home · light</span><div class="ic s60"><img src="icon-g-locked-flame.svg"></div><span class="name">Winter Arc</span></div>
+    <div class="wall dark"><span class="lbl">Home · dark</span><div class="ic s60"><img src="icon-g-locked-flame.svg"></div><span class="name">Winter Arc</span></div>
+  </div>
+  <div class="variants">
+    <div><div class="ic s120"><img src="icon-g-locked-flame.svg"></div>default</div>
+    <div><div class="ic s120 tinted"><img class="tint" src="icon-g-locked-flame.svg" style="opacity:.9"></div>tinted</div>
+    <div><div class="ic s60"><img src="icon-g-locked-flame.svg"></div>60 pt</div>
+    <div><div class="ic s29"><img src="icon-g-locked-flame.svg"></div>29 pt</div>
+  </div>
+  <p>Five vector layers: navy gradient, ¾ ring (gap top-right), flat two-tone ice flame, white star. No baked effects — Liquid Glass supplies the depth. Background lifted for dark-wallpaper contrast.</p>
+</div>
+<div class="opt">
+  <h2>Rebuilt · simple</h2>
+  <div class="big"><img src="icon-g-locked-flame-simple.svg"></div>
+  <div class="row">
+    <div class="wall light"><span class="lbl">Home · light</span><div class="ic s60"><img src="icon-g-locked-flame-simple.svg"></div><span class="name">Winter Arc</span></div>
+    <div class="wall dark"><span class="lbl">Home · dark</span><div class="ic s60"><img src="icon-g-locked-flame-simple.svg"></div><span class="name">Winter Arc</span></div>
+  </div>
+  <div class="variants">
+    <div><div class="ic s120"><img src="icon-g-locked-flame-simple.svg"></div>default</div>
+    <div><div class="ic s120 tinted"><img class="tint" src="icon-g-locked-flame-simple.svg" style="opacity:.9"></div>tinted</div>
+    <div><div class="ic s60"><img src="icon-g-locked-flame-simple.svg"></div>60 pt</div>
+    <div><div class="ic s29"><img src="icon-g-locked-flame-simple.svg"></div>29 pt</div>
+  </div>
+  <p>Same, without the star. Cleanest at 29 pt; candidate for the small-size and tinted appearances if the star proves too fine.</p>
+</div>
+</div></body></html>

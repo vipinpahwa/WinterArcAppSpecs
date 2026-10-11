@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <!-- Layer 1: background (full-bleed, opaque) -->
+  <defs>
+    <linearGradient id="bgA" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1B3A8F"/>
+      <stop offset="1" stop-color="#0B1B4D"/>
+    </linearGradient>
+  </defs>
+  <rect id="background" width="1024" height="1024" fill="url(#bgA)"/>
+  <!-- Layer 2: progress arc (accent), open at top-left -->
+  <path id="arc" d="M 512 118 A 394 394 0 1 1 171 315" fill="none" stroke="#6FA0FF" stroke-width="62" stroke-linecap="round"/>
+  <!-- Layer 3: snowflake (white). Six spokes, one pair of branches each, clear centre. -->
+  <g id="snowflake" fill="none" stroke="#FFFFFF" stroke-width="44" stroke-linecap="round" stroke-linejoin="round">
+    <g id="spoke">
+      <line x1="512" y1="512" x2="512" y2="270"/>
+      <line x1="512" y1="330" x2="452" y2="290"/>
+      <line x1="512" y1="330" x2="572" y2="290"/>
+    </g>
+    <use href="#spoke" transform="rotate(60 512 512)"/>
+    <use href="#spoke" transform="rotate(120 512 512)"/>
+    <use href="#spoke" transform="rotate(180 512 512)"/>
+    <use href="#spoke" transform="rotate(240 512 512)"/>
+    <use href="#spoke" transform="rotate(300 512 512)"/>
+    <circle cx="512" cy="512" r="30" fill="#FFFFFF" stroke="none"/>
+  </g>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <!-- Layer 1: background — night sky gradient -->
+  <defs>
+    <linearGradient id="bgB" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0B1B4D"/>
+      <stop offset="1" stop-color="#1F4FB8"/>
+    </linearGradient>
+  </defs>
+  <rect id="background" width="1024" height="1024" fill="url(#bgB)"/>
+  <!-- Layer 2: the arc — a sun/moon path over the peak -->
+  <path id="arc" d="M 168 620 A 344 344 0 0 1 856 620" fill="none" stroke="#6FA0FF" stroke-width="60" stroke-linecap="round"/>
+  <!-- Layer 3: back peak (translucent ice) -->
+  <polygon id="peak-back" points="330,820 620,430 900,820" fill="#8DB4FF" opacity="0.55"/>
+  <!-- Layer 4: front peak (white snow) -->
+  <polygon id="peak-front" points="110,820 420,380 730,820" fill="#FFFFFF"/>
+  <!-- Layer 5: ground band -->
+  <rect id="ground" x="0" y="820" width="1024" height="204" fill="#0B1B4D" opacity="0.6"/>
+</svg>

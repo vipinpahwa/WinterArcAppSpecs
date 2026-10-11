@@ -1,0 +1,47 @@
+Winter Arc is an offline habit tracker for a self-imposed, time-boxed
+challenge. There is no account and no sign-in, which is why "Sign-in required"
+is unchecked — there is nothing to sign in to.
+
+SEEING THE APP WITH DATA
+A fresh install starts empty, so Progress has nothing to show until days have
+passed. The quickest way to see it populated:
+
+1. Tap "Set up my arc".
+2. Dates — set the start date about three weeks in the past.
+3. Pillars — pick any three of the presets (three is the minimum).
+4. Habits — accept the suggested habits or add your own.
+5. Ruleset — choose any of the three (Streaks, Consistency Score, Grace Days).
+6. Why & reminder, then Before photo — both can be skipped.
+7. Catch up — this step appears only because the start date is in the past.
+   Choose "Mark them all done".
+8. Review — tap Start Arc.
+
+The Progress tab then shows a populated heat map, streak counts and a
+consistency score. Tapping any past cell opens that day's detail.
+
+SEEING THE END-OF-ARC FLOW
+Set the device date (Settings > General > Date & Time) past the arc's end date
+and reopen the app. The completion summary is presented, followed by the
+closing reflection and the optional after-photo step.
+
+PERMISSIONS — ALL OPTIONAL
+- Camera: only if you choose to take a before or after photo. Declining leaves
+  every other part of the app usable.
+- Photo library: add-only access, requested solely when saving a before/after
+  comparison image. The app cannot read the library.
+- Notifications: only for the optional daily reminder.
+
+WIDGET
+Long-press the Home Screen > Add Widget > Winter Arc. The small and medium
+sizes show the current day and how many habits remain.
+
+PRIVACY
+The app contains no networking code of any kind and behaves identically in
+airplane mode. No account, no analytics, no advertising, no third-party SDKs.
+All data is stored in the app's own container and in the App Group it shares
+with its widget. This matches the "Data Not Collected" App Privacy answers and
+the bundled privacy manifest, which declares no tracking, no collected data
+types, and one required-reason API (UserDefaults, reason 1C8F.1).
+
+Support:  https://vipinpahwa.github.io/winterarc-site/support.html
+Privacy:  https://vipinpahwa.github.io/winterarc-site/privacy.html

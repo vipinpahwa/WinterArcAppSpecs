@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <!-- Layer 1: background — cold navy -->
+  <defs>
+    <linearGradient id="bgD" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#132A6B"/>
+      <stop offset="1" stop-color="#0A1738"/>
+    </linearGradient>
+  </defs>
+  <rect id="background" width="1024" height="1024" fill="url(#bgD)"/>
+  <!-- Layer 2: outer flame (ember orange) -->
+  <path id="flame-outer" fill="#FF7A1A" d="M 512 150 C 512 150 700 330 700 560 C 700 700 620 820 512 820 C 404 820 324 700 324 560 C 324 480 356 430 400 380 C 396 470 440 500 468 500 C 500 500 512 470 512 430 C 512 380 470 320 512 150 Z"/>
+  <!-- Layer 3: inner flame (warm yellow) -->
+  <path id="flame-inner" fill="#FFC84A" d="M 512 460 C 512 460 610 560 610 660 C 610 730 566 780 512 780 C 458 780 414 730 414 660 C 414 620 434 590 456 566 C 456 610 480 630 500 630 C 520 630 530 605 528 580 C 526 550 500 520 512 460 Z"/>
+</svg>

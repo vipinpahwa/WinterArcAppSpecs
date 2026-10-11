@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <!-- Layer 1: background — ice-blue gradient -->
+  <defs>
+    <linearGradient id="bgC" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3B7BFF"/>
+      <stop offset="1" stop-color="#1B3A8F"/>
+    </linearGradient>
+  </defs>
+  <rect id="background" width="1024" height="1024" fill="url(#bgC)"/>
+  <!-- Layer 2: ring, three-quarter, ends where the check begins -->
+  <path id="ring" d="M 512 150 A 362 362 0 1 0 874 512" fill="none" stroke="#FFFFFF" stroke-width="80" stroke-linecap="round" opacity="0.45"/>
+  <!-- Layer 3: check mark, heavy, sweeping up into the ring's open end -->
+  <polyline id="check" points="340,540 470,670 874,266" fill="none" stroke="#FFFFFF" stroke-width="96" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

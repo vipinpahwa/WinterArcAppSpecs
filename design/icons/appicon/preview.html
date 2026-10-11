@@ -1,0 +1,34 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+*{box-sizing:border-box;margin:0;padding:0}body{background:#e9e9ee;font-family:-apple-system,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;color:#1c1c1e;padding:36px}
+h1{font-size:20px;margin-bottom:18px}.row{display:flex;gap:28px;align-items:flex-start}
+.card{display:flex;flex-direction:column;gap:10px;align-items:center}.card h2{font-size:14px;font-weight:600;color:#3a3a3c}
+.big{width:300px;height:300px;border-radius:67px;overflow:hidden}.big img{width:100%;height:100%;display:block}
+.small{display:flex;gap:10px;align-items:flex-end}.ic{overflow:hidden}.ic img{width:100%;height:100%;display:block}
+.s60{width:60px;height:60px;border-radius:13.4px}.s29{width:29px;height:29px;border-radius:6.5px}.s40{width:40px;height:40px;border-radius:9px}
+.cap{font-size:11px;color:#6e6e73;text-align:center;max-width:300px;line-height:1.4}
+.homes{display:flex;gap:16px;margin-top:26px}.wall{border-radius:18px;padding:14px 18px 10px;display:flex;gap:18px;align-items:flex-end}
+.wall.light{background:linear-gradient(160deg,#dfe7f5,#f6f2ea)}.wall.dark{background:linear-gradient(160deg,#101828,#1e2a44)}
+.app{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:10px}.wall.dark .app{color:#fff}
+.tintsim{position:relative}.tintsim img{filter:brightness(1)}
+.tintsim::after{content:"";position:absolute;inset:0;background:linear-gradient(#5e8dff,#3b6fe0);mix-blend-mode:multiply;border-radius:inherit}
+</style></head><body>
+<h1>Winter Arc — AppIcon appearances (1024 × 1024, sRGB, no alpha)</h1>
+<div class="row">
+  <div class="card"><h2>Default</h2><div class="big"><img src="AppIcon-default-1024.png"></div>
+    <div class="small"><div class="ic s60"><img src="AppIcon-default-1024.png"></div><div class="ic s40"><img src="AppIcon-default-1024.png"></div><div class="ic s29"><img src="AppIcon-default-1024.png"></div></div>
+    <p class="cap">Light Home Screen, App Store, Spotlight. Navy gradient, ¾ ring, ice flame, star.</p></div>
+  <div class="card"><h2>Dark</h2><div class="big"><img src="AppIcon-dark-1024.png"></div>
+    <div class="small"><div class="ic s60"><img src="AppIcon-dark-1024.png"></div><div class="ic s40"><img src="AppIcon-dark-1024.png"></div><div class="ic s29"><img src="AppIcon-dark-1024.png"></div></div>
+    <p class="cap">Same foreground, deeper and more subdued background per HIG. Never black — keeps its edge on dark wallpapers.</p></div>
+  <div class="card"><h2>Tinted (as supplied)</h2><div class="big"><img src="AppIcon-tinted-1024.png"></div>
+    <div class="small"><div class="ic s60"><img src="AppIcon-tinted-1024.png"></div><div class="ic s40"><img src="AppIcon-tinted-1024.png"></div><div class="ic s29"><img src="AppIcon-tinted-1024.png"></div></div>
+    <p class="cap">Grayscale on black. iOS maps luminance to the user's chosen tint: star brightest → ring dimmest.</p></div>
+  <div class="card"><h2>Tinted (simulated blue tint)</h2><div class="big tintsim"><img src="AppIcon-tinted-1024.png"></div>
+    <div class="small"><div class="ic s60 tintsim"><img src="AppIcon-tinted-1024.png"></div><div class="ic s40 tintsim"><img src="AppIcon-tinted-1024.png"></div><div class="ic s29 tintsim"><img src="AppIcon-tinted-1024.png"></div></div>
+    <p class="cap">Approximation of what the system renders when a user picks a blue tint.</p></div>
+</div>
+<div class="homes">
+  <div class="wall light"><div class="app"><div class="ic s60"><img src="AppIcon-default-1024.png"></div>Winter Arc</div><div class="app"><div class="ic s60" style="background:#34c759"></div>Fitness</div><div class="app"><div class="ic s60" style="background:#ff9500"></div>Reminders</div><div class="app"><div class="ic s60" style="background:#5856d6"></div>Notes</div></div>
+  <div class="wall dark"><div class="app"><div class="ic s60"><img src="AppIcon-dark-1024.png"></div>Winter Arc</div><div class="app"><div class="ic s60" style="background:#1f6e3a"></div>Fitness</div><div class="app"><div class="ic s60" style="background:#a35f00"></div>Reminders</div><div class="app"><div class="ic s60" style="background:#3a3890"></div>Notes</div></div>
+</div>
+</body></html>

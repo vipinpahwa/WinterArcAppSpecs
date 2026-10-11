@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#12285F"/><stop offset="1" stop-color="#070F2E"/></linearGradient></defs>
+<rect width="1024" height="1024" fill="url(#bg)"/>
+<path d="M 730 201 A 380 380 0 1 0 879 610" fill="none" stroke="#2F6FED" stroke-width="52" stroke-linecap="round"/>
+<path d="M 512 190 C 540 290 630 350 630 450 C 630 430 660 400 690 380 C 700 480 720 560 690 650 C 650 760 580 800 512 810 C 444 800 374 760 334 650 C 304 560 324 480 334 380 C 364 400 394 430 394 450 C 394 350 484 290 512 190 Z" fill="#3F93F0"/>
+<path d="M 512 430 C 600 520 620 620 600 700 C 580 760 540 780 512 780 C 484 780 444 760 424 700 C 404 620 424 520 512 430 Z" fill="#9CD0F7"/>
+<polygon points="512,490 550,562 622,600 550,638 512,710 474,638 402,600 474,562" fill="#F2F5FA"/>
+</svg>

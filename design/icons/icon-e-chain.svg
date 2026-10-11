@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <!-- Layer 1: background -->
+  <defs>
+    <linearGradient id="bgE" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0F2760"/>
+      <stop offset="1" stop-color="#1B3A8F"/>
+    </linearGradient>
+  </defs>
+  <rect id="background" width="1024" height="1024" fill="url(#bgE)"/>
+  <!-- Layer 2: the chain — a 4×4 heat-map, filled top-left to bottom-right, last cells still open -->
+  <g id="cells">
+    <!-- row 1: full -->
+    <rect x="176" y="176" width="140" height="140" rx="34" fill="#FFFFFF"/>
+    <rect x="352" y="176" width="140" height="140" rx="34" fill="#FFFFFF"/>
+    <rect x="528" y="176" width="140" height="140" rx="34" fill="#FFFFFF"/>
+    <rect x="704" y="176" width="140" height="140" rx="34" fill="#FFFFFF"/>
+    <!-- row 2: full -->
+    <rect x="176" y="352" width="140" height="140" rx="34" fill="#FFFFFF"/>
+    <rect x="352" y="352" width="140" height="140" rx="34" fill="#FFFFFF"/>
+    <rect x="528" y="352" width="140" height="140" rx="34" fill="#FFFFFF"/>
+    <rect x="704" y="352" width="140" height="140" rx="34" fill="#FFFFFF"/>
+    <!-- row 3: today lit in accent, rest done -->
+    <rect x="176" y="528" width="140" height="140" rx="34" fill="#FFFFFF"/>
+    <rect x="352" y="528" width="140" height="140" rx="34" fill="#FFFFFF"/>
+    <rect x="528" y="528" width="140" height="140" rx="34" fill="#6FA0FF"/>
+    <rect x="704" y="528" width="140" height="140" rx="34" fill="#FFFFFF" opacity="0.22"/>
+    <!-- row 4: still to come -->
+    <rect x="176" y="704" width="140" height="140" rx="34" fill="#FFFFFF" opacity="0.22"/>
+    <rect x="352" y="704" width="140" height="140" rx="34" fill="#FFFFFF" opacity="0.22"/>
+    <rect x="528" y="704" width="140" height="140" rx="34" fill="#FFFFFF" opacity="0.22"/>
+    <rect x="704" y="704" width="140" height="140" rx="34" fill="#FFFFFF" opacity="0.22"/>
+  </g>
+</svg>
