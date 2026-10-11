@@ -11,6 +11,8 @@ General habit apps are built for open-ended, forever habits. An arc is the oppos
 difference shows up everywhere: the day counter is the hero, a miss costs whatever your ruleset
 says it costs, and the whole thing ends on a summary you can look back on.
 
+Youtube video: https://youtube.com/shorts/Bsf9AAiYJZA?feature=share
+
 | Today | Progress | Arc complete |
 |---|---|---|
 | ![Today](design/screenshots/m1-today-dark.png) | ![Progress](design/screenshots/m2-progress-dark.png) | ![Arc complete](design/screenshots/m3-arc-complete-dark.png) |
